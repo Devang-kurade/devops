@@ -2,7 +2,12 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "static-website"
+        IMAGE_NAME = "devangkurade/devops-app"
+
+        DOCKER_USER = credentials('8df9a7ba-3a55-4ca2-87f3-4c89c2f9dbe4')
+        DOCKER_PASS = credentials('8df9a7ba-3a55-4ca2-87f3-4c89c2f9dbe4')
+
+        EC2_HOST = "ubuntu@16.16.25.253"
         CONTAINER_NAME = "static-website"
     }
 
@@ -20,28 +25,29 @@ pipeline {
             }
         }
 
-        stage('Remove Old Container') {
-            steps {
-                sh 'docker rm -f $CONTAINER_NAME || true'
-            }
-        }
-
-        stage('Run Container') {
+        stage('Login & Push Image') {
             steps {
                 sh '''
-                docker run -d \
-                --name $CONTAINER_NAME \
-                -p 8085:80 \
-                $IMAGE_NAME:latest
+                echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+                docker push $IMAGE_NAME:latest
                 '''
             }
         }
-        stage('Deploy') {
+
+        sstage('Deploy on EC2') {
     steps {
-        sh """
-        scp -r dist/* ubuntu@16.16.25.253:/var/www/html/
-        """
+        sshagent(['ec2-ssh-key']) {
+            sh '''
+            ssh -o StrictHostKeyChecking=no ubuntu@16.16.25.253 "
+                docker stop static-website || true &&
+                docker rm static-website || true &&
+                docker pull devangkurade/devops-app:latest &&
+                docker run -d -p 80:80 --name static-website devangkurade/devops-app:latest
+            "
+            '''
+        }
     }
 }
+
     }
 }
