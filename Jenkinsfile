@@ -37,16 +37,17 @@ pipeline {
         }
     stage('Deploy on EC2') {
     steps {
-        sh '''
-        ssh -i /home/ubuntu/test-key.pem -o StrictHostKeyChecking=no ubuntu@16.16.25.253 "
-            docker stop static-website || true &&
-            docker rm static-website || true &&
-            docker pull devangkurade/devops-app:latest &&
-            docker run -d --name static-website -p 80:80 devangkurade/devops-app:latest
-        "
-        '''
+        sshagent(credentials: ['4d8d34ba-031b-4071-9ee7-b97768931427']) {
+            sh '''
+            ssh -o StrictHostKeyChecking=no ubuntu@16.16.25.253 "
+                docker stop static-website || true
+                docker rm static-website || true
+                docker pull devangkurade/devops-app:latest
+                docker run -d --name static-website -p 80:80 devangkurade/devops-app:latest
+            "
+            '''
+        }
     }
 }
-
     }
 }
