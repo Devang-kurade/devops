@@ -36,5 +36,12 @@ pipeline {
                 '''
             }
         }
+        stage('Deploy') {
+    steps {
+        sh """
+        scp -r dist/* ubuntu@<EC2-IP>:/var/www/html/
+        """
+    }
+}
     }
 }
