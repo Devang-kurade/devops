@@ -36,7 +36,7 @@ pipeline {
 
         sstage('Deploy on EC2') {
     steps {
-        sshagent(['ec2-ssh-key']) {
+        sshagent(['4d8d34ba-031b-4071-9ee7-b97768931427']) {
             sh '''
             ssh -o StrictHostKeyChecking=no ubuntu@16.16.25.253 "
                 docker stop static-website || true &&
