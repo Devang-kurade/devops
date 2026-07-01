@@ -39,7 +39,7 @@ pipeline {
         stage('Deploy') {
     steps {
         sh """
-        scp -r dist/* ubuntu@<EC2-IP>:/var/www/html/
+        scp -r dist/* ubuntu@16.16.25.253:/var/www/html/
         """
     }
 }
