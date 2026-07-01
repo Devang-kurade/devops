@@ -34,7 +34,7 @@ pipeline {
             '''
         }
     }
-
+        }
         stage('Deploy on EC2') {
     steps {
         sshagent(['4d8d34ba-031b-4071-9ee7-b97768931427']) {
