@@ -26,13 +26,14 @@ pipeline {
         }
 
         stage('Login & Push Image') {
-            steps {
-                sh '''
-                echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
-                docker push $IMAGE_NAME:latest
-                '''
-            }
+    steps {
+        withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+            sh '''
+            echo $PASS | docker login -u $USER --password-stdin
+            docker push devangkurade/devops-app:latest
+            '''
         }
+    }
 
         stage('Deploy on EC2') {
     steps {
