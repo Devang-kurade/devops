@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nature Explorer</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    line-height:1.6;
+    color:#333;
+}
+
+header{
+    background:#0f172a;
+    color:white;
+    padding:20px 50px;
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:25px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+}
+
+.hero{
+    height:90vh;
+    background:url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80')
+    center/cover no-repeat;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:white;
+}
+
+.hero-content{
+    background:rgba(0,0,0,0.5);
+    padding:40px;
+    border-radius:10px;
+}
+
+.hero h1{
+    font-size:4rem;
+    margin-bottom:10px;
+}
+
+.hero p{
+    font-size:1.2rem;
+    margin-bottom:20px;
+}
+
+.btn{
+    background:#22c55e;
+    color:white;
+    padding:12px 24px;
+    text-decoration:none;
+    border-radius:6px;
+}
+
+.section-title{
+    text-align:center;
+    margin:50px 0 30px;
+    font-size:2rem;
+}
+
+.gallery{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:20px;
+    padding-bottom:50px;
+}
+
+.card{
+    background:white;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+
+.card img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:20px;
+}
+
+.card h3{
+    margin-bottom:10px;
+}
+
+footer{
+    background:#0f172a;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <h2>Nature Explorer</h2>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Gallery</a></li>
+            <li><a href="#">Destinations</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Explore Nature</h1>
+        <p>Discover beautiful landscapes around the world.</p>
+        <a href="#gallery" class="btn">View Gallery</a>
+    </div>
+</section>
+
+<h2 class="section-title" id="gallery">Featured Destinations</h2>
+
+<section class="gallery">
+
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80"
+             alt="Mountains">
+        <div class="card-content">
+            <h3>Mountain Adventures</h3>
+            <p>Experience breathtaking mountain views and fresh air.</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
+             alt="Beach">
+        <div class="card-content">
+            <h3>Tropical Beaches</h3>
+            <p>Relax on pristine beaches with crystal-clear water.</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=800&q=80"
+             alt="Forest">
+        <div class="card-content">
+            <h3>Green Forests</h3>
+            <p>Walk through lush forests and connect with nature.</p>
+        </div>
+    </div>
+
+</section>
+
+<footer>
+    <p>© 2026 Nature Explorer. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
