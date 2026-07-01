@@ -4,8 +4,8 @@ pipeline {
     environment {
         IMAGE_NAME = "devangkurade/devops-app"
 
-        DOCKER_USER = credentials('8df9a7ba-3a55-4ca2-87f3-4c89c2f9dbe4')
-        DOCKER_PASS = credentials('8df9a7ba-3a55-4ca2-87f3-4c89c2f9dbe4')
+        DOCKER_USER = credentials('docker-hub')
+        DOCKER_PASS = credentials('docker-hub')
 
         EC2_HOST = "ubuntu@16.16.25.253"
         CONTAINER_NAME = "static-website"
